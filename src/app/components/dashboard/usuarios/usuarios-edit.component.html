@@ -1,0 +1,83 @@
+<div class="container">
+  <mat-toolbar>
+    <span>Editar Usuarios</span>
+  </mat-toolbar>
+
+
+
+
+<div class="body">
+
+  <div class="formulario">
+
+<form [formGroup]="userForm" (ngSubmit)="updateUserForm()" #resetUserForm="ngForm" novalidate>
+  <!-- Left block -->
+  <mat-card>
+    <div class="controlers-wrapper">
+      <!-- Name -->
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="First name" formControlName="firstName">
+        <mat-error *ngIf="handleError('firstName', 'required')">
+          You must provide a<strong>student name</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Email -->
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="LastName" formControlName="lastName">
+        <mat-error *ngIf="handleError('lastName', 'required')">
+          You must provide a<strong>student email</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Section -->
+      <mat-form-field>
+        <input matInput placeholder="username" formControlName="username">
+        <mat-error *ngIf="handleError('username', 'required')">
+          You must provide a<strong>student email</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </mat-card>
+
+  <!-- Right block -->
+  <mat-card>
+    <div class="controlers-wrapper">
+      <!-- Add subjects -->
+      <mat-form-field>
+        <input matInput placeholder="password" formControlName="password">
+        <mat-error *ngIf="handleError('password', 'required')">
+          You must provide a<strong>student email</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="ConfirmPassword" formControlName="ConfirmPassword">
+        <mat-error *ngIf="handleError('ConfirmPassword', 'required')">
+          You must provide a<strong>student email</strong>
+        </mat-error>
+      </mat-form-field>
+      <!-- Date of birth -->
+      <mat-form-field>
+        <input matInput placeholder="role" formControlName="role">
+        <mat-error *ngIf="handleError('role', 'required')">
+          You must provide a<strong>student email</strong>
+        </mat-error>
+      </mat-form-field>
+
+    </div>
+  </mat-card>
+
+  <!-- Submit & Reset -->
+  <mat-card>
+    <div class="full-wrapper button-wrapper">
+      <div class="button-wrapper">
+        <button mat-flat-button color="warn">Update</button>
+      </div>
+    </div>
+  </mat-card>
+</form>
+</div>
+
+</div>
+
+</div>

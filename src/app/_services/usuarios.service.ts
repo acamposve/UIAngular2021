@@ -23,7 +23,7 @@ export class UsuariosService {
 
 
 
-  getById(id: string) {
+  getById(id: number) {
     console.log('id' + id);
     return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
   }
@@ -32,7 +32,7 @@ export class UsuariosService {
     return this.http.post(baseUrl, params);
   }
 
-  update(id: string, params: any) {
+  update(id: number, params: any) {
     return this.http.put(`${baseUrl}/${id}`, params);
   }
 

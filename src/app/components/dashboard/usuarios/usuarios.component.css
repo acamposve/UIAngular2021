@@ -41,11 +41,29 @@ table {
 .mat-column-created {
   max-width: 124px;
 }
-th {
-  width: 20%;
+
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
 }
 
+td, th {
+  width: 15%;
+}
 
 .pointer {
  cursor: pointer;
+}
+.demo-table {
+  width: 100%;
+}
+
+.demo-button-container {
+  padding-bottom: 16px;
+  margin-top: 30px;
+}
+
+.demo-button + .demo-button {
+  margin-left: 8px;
 }

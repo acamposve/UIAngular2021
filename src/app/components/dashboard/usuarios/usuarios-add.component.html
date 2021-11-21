@@ -1,0 +1,87 @@
+<div class="container">
+  <mat-toolbar>
+    <span>Agregar Usuarios</span>
+  </mat-toolbar>
+
+
+
+
+<div class="body">
+
+  <div class="formulario">
+<form [formGroup]="userForm" (ngSubmit)="submitUserForm()" #resetUserForm="ngForm" novalidate>
+  <!-- Left block -->
+  <mat-card>
+    <div class="controlers-wrapper">
+      <!-- Name -->
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="First name" formControlName="firstName">
+        <mat-error *ngIf="handleError('firstName', 'required')">
+          You must provide a<strong>student name</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Email -->
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Last Name" formControlName="lastName">
+        <mat-error *ngIf="handleError('lastName', 'required')">
+          You must provide a<strong>student email</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Section -->
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="User Name" formControlName="username">
+        <mat-error *ngIf="handleError('username', 'required')">
+          You must provide a<strong>student email</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </mat-card>
+
+  <!-- Right block -->
+  <mat-card>
+    <div class="controlers-wrapper">
+      <!-- Add subjects -->
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Password" formControlName="password">
+        <mat-error *ngIf="handleError('password', 'required')">
+          You must provide a<strong>student email</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="ConfirmPassword" formControlName="ConfirmPassword">
+        <mat-error *ngIf="handleError('ConfirmPassword', 'required')">
+          You must provide a<strong>student email</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Choose an option</mat-label>
+        <mat-select  formControlName="role">
+          <mat-option value="User">User</mat-option>
+          <mat-option value="Admin">Admin</mat-option>
+
+        </mat-select>
+      </mat-form-field>
+
+
+    </div>
+  </mat-card>
+
+  <!-- Submit & Reset -->
+  <mat-card>
+    <div class="full-wrapper button-wrapper">
+      <div class="button-wrapper">
+        <button mat-flat-button color="warn">Submit</button>
+      </div>
+    </div>
+  </mat-card>
+</form>
+
+  </div>
+
+</div>
+
+</div>

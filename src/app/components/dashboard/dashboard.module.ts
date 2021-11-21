@@ -9,6 +9,10 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
 import { EmbarquesComponent } from './embarques/embarques.component';
 import { StatusEmbarquesComponent } from './status-embarques/status-embarques.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { UsuariosAddComponent } from './usuarios/usuarios-add.component';
+import { UsuariosEditComponent } from './usuarios/usuarios-edit.component';
+
+
 
 
 @NgModule({
@@ -18,7 +22,9 @@ import { NavbarComponent } from './navbar/navbar.component';
     UsuariosComponent,
     EmbarquesComponent,
     StatusEmbarquesComponent,
-    NavbarComponent
+    NavbarComponent,
+    UsuariosAddComponent,
+    UsuariosEditComponent
   ],
   imports: [
     CommonModule,

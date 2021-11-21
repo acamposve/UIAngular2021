@@ -2,6 +2,8 @@
   "name": "ui-angular2021",
   "version": "0.0.0",
   "scripts": {
+    "e2e": "ng e2e",
+    "e2e:test": "./node_modules/.bin/nightwatch --env 'chrome' --config './nightwatch.conf.js'",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
@@ -28,14 +30,18 @@
     "@angular-devkit/build-angular": "~13.0.1",
     "@angular/cli": "~13.0.1",
     "@angular/compiler-cli": "~13.0.0",
+    "@nightwatch/schematics": "^0.1.8",
     "@types/jasmine": "~3.10.0",
+    "@types/nightwatch": "latest",
     "@types/node": "^12.11.1",
+    "chromedriver": "latest",
     "jasmine-core": "~3.10.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
+    "nightwatch": "latest",
     "typescript": "~4.4.3"
   }
 }
