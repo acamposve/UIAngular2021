@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { EmbarquesComponent } from './embarques/embarques.component';
 import { InicioComponent } from './inicio/inicio.component';
+import { StatusEmbarquesAddComponent } from './status-embarques/status-embarques-add.component';
+import { StatusEmbarquesEditComponent } from './status-embarques/status-embarques-edit.component';
 import { StatusEmbarquesComponent } from './status-embarques/status-embarques.component';
 import { UsuariosAddComponent } from './usuarios/usuarios-add.component';
 import { UsuariosEditComponent } from './usuarios/usuarios-edit.component';
@@ -16,7 +18,8 @@ const routes: Routes = [
     { path: 'edit-user/:id', component: UsuariosEditComponent },
     { path: 'embarques', component: EmbarquesComponent },
     { path: 'status', component: StatusEmbarquesComponent },
-
+    { path: 'statusAdd', component: StatusEmbarquesAddComponent },
+    { path: 'edit-status/:id', component: StatusEmbarquesEditComponent },
   ] },
 
 ];

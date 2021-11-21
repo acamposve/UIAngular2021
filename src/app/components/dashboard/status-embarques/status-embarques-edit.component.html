@@ -1,0 +1,38 @@
+<div class="container">
+  <mat-toolbar>
+    <span>Editar Status</span>
+  </mat-toolbar>
+
+  <div class="body">
+    <div class="formulario">
+      <form
+        [formGroup]="StatusForm"
+        (ngSubmit)="updateStatusForm()"
+        #resetUserForm="ngForm"
+        novalidate
+      >
+        <!-- Left block -->
+        <mat-card>
+          <div class="controlers-wrapper">
+            <!-- Name -->
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Status" formControlName="status" />
+              <mat-error *ngIf="handleError('status', 'required')">
+                You must provide a<strong>student name</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </mat-card>
+
+        <!-- Submit & Reset -->
+        <mat-card>
+          <div class="full-wrapper button-wrapper">
+            <div class="button-wrapper">
+              <button mat-flat-button color="warn">Update</button>
+            </div>
+          </div>
+        </mat-card>
+      </form>
+    </div>
+  </div>
+</div>
