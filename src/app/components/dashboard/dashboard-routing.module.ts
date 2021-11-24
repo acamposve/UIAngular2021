@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
+import { EmbarquesUsuariosComponent } from './embarques-usuarios/embarques-usuarios.component';
+import { EmbarquesAddComponent } from './embarques/embarques-add.component';
 import { EmbarquesComponent } from './embarques/embarques.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { StatusEmbarquesAddComponent } from './status-embarques/status-embarques-add.component';
@@ -20,6 +22,9 @@ const routes: Routes = [
     { path: 'status', component: StatusEmbarquesComponent },
     { path: 'statusAdd', component: StatusEmbarquesAddComponent },
     { path: 'edit-status/:id', component: StatusEmbarquesEditComponent },
+    { path: 'receiptAdd', component: EmbarquesAddComponent },
+    { path: 'usuariosembarques', component: EmbarquesUsuariosComponent },
+
   ] },
 
 ];

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Role } from 'src/app/_models/role';
 import { User } from 'src/app/_models/user';
 import { LoginService } from 'src/app/_services/login.service';
 
@@ -14,6 +15,11 @@ export class NavbarComponent implements OnInit {
     this.loginService.user.subscribe((x) => (this.user = x));
   }
 
+
+
+  get isAdmin() {
+    return this.user && this.user.role === Role.Admin;
+}
   ngOnInit(): void {}
   logout() {
     this.loginService.logout();

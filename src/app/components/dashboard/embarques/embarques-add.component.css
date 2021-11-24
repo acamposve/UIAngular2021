@@ -1,3 +1,30 @@
+.body{
+
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+  background-color: #f5f5f5;
+}
+
+.formulario{
+
+  width: 100%;
+  max-width: 100%;
+  text-align: center;
+}
+.form-container {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+  background-color: #f5f5f5;
+  flex-direction: column;
+}
+
+.form-container > * {
+  width: 75%;
+}
 /* Structure */
 .example-container {
   position: relative;

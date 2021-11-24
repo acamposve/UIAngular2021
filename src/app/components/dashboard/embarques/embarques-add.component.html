@@ -1,0 +1,103 @@
+<div class="container">
+  <mat-toolbar>
+    <span>Agregar Embarques</span>
+  </mat-toolbar>
+
+  <div class="body">
+    <div class="formulario">
+      <form
+        [formGroup]="embarquesForm"
+        (ngSubmit)="submitEmbarquesForm()"
+        #resetUserForm="ngForm"
+        novalidate
+      >
+        <div class="form-container">
+          <mat-form-field class="example-full-width">
+            <input
+              matInput
+              placeholder="Referencia"
+              formControlName="referencia"
+            />
+            <mat-error *ngIf="handleError('referencia', 'required')">
+              You must provide a<strong>student name</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput [matDatepicker]="fechaarribo" placeholder="Fecha Arribo" formControlName="fechaarribo" required>
+            <mat-datepicker-toggle matSuffix [for]="fechaarribo"></mat-datepicker-toggle>
+            <mat-datepicker #fechaarribo></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Origen" formControlName="origen" />
+            <mat-error *ngIf="handleError('origen', 'required')">
+              You must provide a<strong>student email</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Destino" formControlName="destino" />
+            <mat-error *ngIf="handleError('destino', 'required')">
+              You must provide a<strong>student email</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <input
+              matInput
+              placeholder="Cantidad Containers"
+              formControlName="cantidadcontainers"
+            />
+            <mat-error *ngIf="handleError('cantidadcontainers', 'required')">
+              You must provide a<strong>student email</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <textarea
+              matInput
+              formControlName="mercancia"
+              placeholder="Mercancia"
+            ></textarea>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Status</mat-label>
+            <mat-select formControlName="statusid">
+              <mat-option
+                *ngFor="let status of statusList"
+                [value]="status.id"
+                >{{ status.status }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Usuarios</mat-label>
+            <mat-select formControlName="userid" multiple>
+              <mat-option *ngFor="let user of usersList" [value]="user.id">{{
+                user.firstName
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+
+          <input
+          formControlName="file"
+          id="file"
+          type="file"
+          multiple
+          class="form-control"
+          (change)="onFileChange($event)">
+        </div>
+
+        <!-- Submit & Reset -->
+        <mat-card>
+          <div class="full-wrapper button-wrapper">
+            <div class="button-wrapper">
+              <button mat-flat-button color="warn">Submit</button>
+            </div>
+          </div>
+        </mat-card>
+      </form>
+    </div>
+  </div>
+</div>
