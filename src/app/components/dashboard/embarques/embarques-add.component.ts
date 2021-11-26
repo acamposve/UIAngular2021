@@ -24,7 +24,7 @@ export class EmbarquesAddComponent implements OnInit {
   myUsers: Number[] = [];
   statusList: Status[] = [];
 
-  usersList: User[] = [];
+
 
   @ViewChild('chipList') chipList: any;
   @ViewChild('resetEmbarquesForm') myNgForm: any;
@@ -39,7 +39,6 @@ export class EmbarquesAddComponent implements OnInit {
     private userApi: UsuariosService,
     private dateAdapter: DateAdapter<Date>
   ) {
-
     this.dateAdapter.setLocale('en-GB'); //dd/MM/yyyy
   }
 
@@ -50,10 +49,7 @@ export class EmbarquesAddComponent implements OnInit {
       .pipe(first())
       .subscribe((statusList) => (this.statusList = statusList));
 
-    this.userApi
-      .getAll()
-      .pipe(first())
-      .subscribe((usersList) => (this.usersList = usersList));
+
   }
   /* Reactive book form */
   submitBookForm() {
@@ -65,7 +61,7 @@ export class EmbarquesAddComponent implements OnInit {
       statusid: ['', [Validators.required]],
       cantidadcontainers: ['', [Validators.required]],
       mercancia: ['', [Validators.required]],
-      userid: ['', [Validators.required]],
+
       file: ['', [Validators.required]],
     });
   }
@@ -98,17 +94,19 @@ export class EmbarquesAddComponent implements OnInit {
     for (var i = 0; i < this.myFiles.length; i++) {
       formData.append('file[]', this.myFiles[i]);
     }
-var fecha = new Date (this.embarquesForm.value.fechaarribo).toISOString();
-console.log("fecha " + fecha);
+    var fecha = new Date(this.embarquesForm.value.fechaarribo).toISOString();
 
     formData.append('referencia', this.embarquesForm.value.referencia);
     formData.append('origen', this.embarquesForm.value.origen);
     formData.append('destino', this.embarquesForm.value.destino);
     formData.append('fechaarribo', fecha);
     formData.append('statusid', this.embarquesForm.value.statusid);
-    formData.append('cantidadcontainers', this.embarquesForm.value.cantidadcontainers);
+    formData.append(
+      'cantidadcontainers',
+      this.embarquesForm.value.cantidadcontainers
+    );
     formData.append('mercancia', this.embarquesForm.value.mercancia);
-    formData.append('userid', this.embarquesForm.value.userid);
+
     this.embarquesApi.create(formData).subscribe((res) => {
       this.ngZone.run(() => this.router.navigateByUrl('/dashboard/embarques'));
     });

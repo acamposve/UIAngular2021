@@ -1,1 +1,48 @@
-<p>embarques-usuarios works!</p>
+<div class="container">
+  <mat-toolbar>
+    <span>Agregar Usuarios a Embarques</span>
+  </mat-toolbar>
+
+  <div class="body">
+    <div class="formulario">
+      <form
+        [formGroup]="embarquesForm"
+        (ngSubmit)="submitEmbarquesUsuariosForm()"
+        #resetUserForm="ngForm"
+        novalidate
+      >
+        <div class="form-container">
+          <mat-form-field appearance="fill">
+            <mat-label>Embarque</mat-label>
+            <mat-select formControlName="embarqueid">
+              <mat-option
+                *ngFor="let embarque of embarquesList"
+                [value]="embarque.id"
+                >{{ embarque.referencia }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="form-container">
+          <mat-form-field appearance="fill">
+            <mat-label>Usuarios</mat-label>
+            <mat-select formControlName="userid" multiple>
+              <mat-option *ngFor="let user of userList" [value]="user.id">{{
+                user.firstName
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <!-- Submit & Reset -->
+        <mat-card>
+          <div class="full-wrapper button-wrapper">
+            <div class="button-wrapper">
+              <button mat-flat-button color="warn">Submit</button>
+            </div>
+          </div>
+        </mat-card>
+      </form>
+    </div>
+  </div>
+</div>

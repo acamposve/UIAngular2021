@@ -70,14 +70,6 @@
             </mat-select>
           </mat-form-field>
 
-          <mat-form-field appearance="fill">
-            <mat-label>Usuarios</mat-label>
-            <mat-select formControlName="userid" multiple>
-              <mat-option *ngFor="let user of usersList" [value]="user.id">{{
-                user.firstName
-              }}</mat-option>
-            </mat-select>
-          </mat-form-field>
 
 
           <input

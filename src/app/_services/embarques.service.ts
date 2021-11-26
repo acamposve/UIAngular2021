@@ -4,6 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Receipt } from '../_models/receipt';
+import { UsuariosEmbarques } from '../_models/usuariosembarques';
 
 const baseUrl = `${environment.apiUrl}/api/Receipts`;
 @Injectable({
@@ -28,6 +29,13 @@ export class EmbarquesService {
 
   create(params: any) {
     return this.http.post(baseUrl, params);
+  }
+
+
+  createUsers(params: any) {
+console.log("parametros " + params);
+
+    return this.http.post(`${baseUrl}/addUsers`, params);
   }
 
   update(id: number, params: any) {
