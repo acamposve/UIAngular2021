@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Receipt } from '../_models/receipt';
 import { UsuariosEmbarques } from '../_models/usuariosembarques';
+import { ReceiptsAccounts } from '../_models/receipts_accounts';
 
 const baseUrl = `${environment.apiUrl}/api/Receipts`;
 @Injectable({
@@ -21,11 +22,17 @@ export class EmbarquesService {
   }
 
   getById(id: number) {
-    console.log('id' + id);
     return this.http.get<Receipt>(
       `${environment.apiUrl}/api/Receipts/${id}`
     );
   }
+
+  getByAccountId(id: number) {
+    return this.http.get<ReceiptsAccounts[]>(
+      `${environment.apiUrl}/api/Receipts/ReceiptsByAccount/${id}`
+    );
+  }
+
 
   create(params: any) {
     return this.http.post(baseUrl, params);

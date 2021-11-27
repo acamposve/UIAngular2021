@@ -2,29 +2,147 @@
   <mat-toolbar>
     <span>DashBoard</span>
   </mat-toolbar>
-  <div class="card-body">
-    <p>You're logged in with Angular 10 & JWT!!</p>
-    <p>Your role is: <strong>{{user.role}}</strong>.</p>
-    <p>This page can be accessed by <u>all authenticated users</u>.</p>
-    <p class="mb-1">Current user from secure api end point:</p>
-    <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
-    <ul *ngIf="userFromApi">
-        <li>{{userFromApi.firstName}} {{userFromApi.lastName}}</li>
-    </ul>
+  <div class="body">
+    <div class="login">
+      <p>You're logged in with Angular 10 & JWT!!</p>
+      <p>
+        Your role is: <strong>{{ user.role }}</strong
+        >.
+      </p>
+      <p>This page can be accessed by <u>all authenticated users</u>.</p>
+      <p class="mb-1">Current user from secure api end point:</p>
+      <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+      <ul *ngIf="userFromApi">
+        <li>{{ userFromApi.firstName }} {{ userFromApi.lastName }}</li>
+      </ul>
 
+      <div *ngIf="!isAdmin">
+        <mat-form-field appearance="standard">
+          <mat-label>Filter</mat-label>
+          <input
+            matInput
+            (keyup)="applyFilter($event)"
+            placeholder="Ex. ium"
+            #input
+          />
+        </mat-form-field>
+        <div class="mat-elevation-z8">
+          <table
+            mat-table
+            [dataSource]="dataSource"
+            matSort
+            style="margin-top: 20px"
+          >
+            <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
 
+            <ng-container matColumnDef="id">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+                style="width: 5%"
+                mat-sort-header
+              ></th>
+              <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+            </ng-container>
 
-    <div   *ngIf="!isAdmin">
-se muestra solo para usuarios
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="firstName" style="width: 20%">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Firstname
+              </th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.firstName }}
+              </td>
+            </ng-container>
 
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="lastName" style="width: 20%">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                LastName
+              </th>
+              <td mat-cell *matCellDef="let element">{{ element.lastName }}</td>
+            </ng-container>
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="referencia">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+                style="width: 20%"
+                mat-sort-header
+              >
+                referencia
+              </th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.referencia }}
+              </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="fechaArribo">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+                style="width: 20%"
+                mat-sort-header
+              >
+                Fecha Arribo
+              </th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.fechaArribo | date}}
+              </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="origen" style="width: 20%">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Origen</th>
+              <td mat-cell *matCellDef="let element">{{ element.origen }}</td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="destino" style="width: 20%">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Destino</th>
+              <td mat-cell *matCellDef="let element">{{ element.destino }}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+          <mat-paginator
+            [pageSizeOptions]="[5, 10, 20]"
+            showFirstLastButtons
+            aria-label="Select page of periodic elements"
+          >
+          </mat-paginator>
+        </div>
+      </div>
+
+      <div *ngIf="isAdmin">
+        <mat-card class="example-card" *ngFor="let embarques of embarquesList">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{ embarques.referencia }}</mat-card-title>
+            <mat-card-subtitle
+              >Origen: {{ embarques.origen }} - Destino:
+              {{ embarques.destino }}</mat-card-subtitle
+            >
+          </mat-card-header>
+
+          <mat-card-content>
+            <p>
+              The Shiba Inu is the smallest of the six original and distinct
+              spitz breeds of dog from Japan. A small, agile dog that copes very
+              well with mountainous terrain, the Shiba Inu was originally bred
+              for hunting.
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button>LIKE</button>
+            <button mat-button>SHARE</button> </mat-card-actions
+          ><br />
+        </mat-card>
+      </div>
     </div>
-
-    <div   *ngIf="isAdmin">
-      se muestra solo para admin
-
-          </div>
-
-
-
-</div>
+  </div>
 </div>
