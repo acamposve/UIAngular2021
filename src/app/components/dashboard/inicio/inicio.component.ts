@@ -29,13 +29,12 @@ export class InicioComponent implements OnInit {
   sort!: MatSort;
   displayedColumns: string[] = [
     'id',
-    'firstName',
-    'lastName',
-
+    'status',
     'referencia',
     'fechaArribo',
     'origen',
     'destino',
+    'acciones',
   ];
 
   user: User;
@@ -78,6 +77,7 @@ export class InicioComponent implements OnInit {
         this.dataSource = new MatTableDataSource<ReceiptsAccounts>(
           this.ReceiptData
         );
+        console.log(this.ReceiptData);
         setTimeout(() => {
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;

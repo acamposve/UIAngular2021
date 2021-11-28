@@ -40,7 +40,7 @@ export class EmbarquesService {
 
 
   createUsers(params: any) {
-console.log("parametros " + params);
+
 
     return this.http.post(`${baseUrl}/addUsers`, params);
   }

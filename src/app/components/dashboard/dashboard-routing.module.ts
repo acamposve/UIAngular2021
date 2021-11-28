@@ -12,10 +12,12 @@ import { UsuariosAddComponent } from './usuarios/usuarios-add.component';
 import { UsuariosEditComponent } from './usuarios/usuarios-edit.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 
+
+const usersModule = () => import('./usuarios/usuarios.module').then(x => x.UsuariosModule);
 const routes: Routes = [
   { path: '', component: DashboardComponent, children:[
     { path: '', component: InicioComponent },
-    { path: 'usuarios', component: UsuariosComponent },
+    { path: 'usuarios', loadChildren: usersModule },
     { path: 'usuariosAdd', component: UsuariosAddComponent },
     { path: 'edit-user/:id', component: UsuariosEditComponent },
     { path: 'embarques', component: EmbarquesComponent },

@@ -99,3 +99,24 @@ td, th {
 .demo-button + .demo-button {
   margin-left: 8px;
 }
+#u9142-4 {
+
+  background-color: transparent;
+
+  text-align: center;
+
+  font-size: 16px;
+
+  font-family: bebas-neue, sans-serif;
+
+  min-height: 24px;
+
+  width: 226px;
+
+  color: #FFFFFF;
+
+  font-weight: 400;
+
+  line-height: 34px;
+
+}

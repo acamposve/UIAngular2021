@@ -4,6 +4,5 @@ export interface ReceiptsAccounts {
   fechaarribo: Date;
   origen: string;
   destino: string;
-  firstname: string;
-  lastname: string;
+  status: string;
 }
