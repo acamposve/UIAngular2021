@@ -3,11 +3,11 @@
 
     <mat-spinner class="spinner" diameter="50" *ngIf="loading"></mat-spinner>
     <form *ngIf="!loading" [formGroup]="form" (ngSubmit)="ingresar()">
-      <img src="./assets/img/programmer.png" width="50%" alt="" />
+      <img src="./assets/img/logo_dashboard.png" width="50%" alt="" />
       <h1>Login</h1>
       <mat-form-field appearance="fill" class="ancho">
         <mat-label>Usuario</mat-label>
-        <input matInput formControlName="usuario" />
+        <input matInput formControlName="usuario" autocomplete="off" />
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="ancho">

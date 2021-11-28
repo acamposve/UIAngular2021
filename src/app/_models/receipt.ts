@@ -1,11 +1,12 @@
 export interface Receipt {
   id: string;
   referencia: string;
-  fechaarribo: Date;
+  fechaArribo: Date;
   origen: string;
   destino: string;
   statusid: number;
-  cantidadcontainers: string;
+  cantidadContainers: string;
   mercancia: string;
+  status: string;
 
 }

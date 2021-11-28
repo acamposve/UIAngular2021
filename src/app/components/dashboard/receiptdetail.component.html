@@ -1,0 +1,28 @@
+<p>receiptdetail works!</p>
+{{archivos | json}}
+
+<table style="width: 100%;">
+  <tr>
+    <th>Referencia</th>
+    <th>Fecha Arribo</th>
+    <th>Origen</th>
+    <th>Destino</th>
+    <th>Status</th>
+    <th>Cantidad Containers</th>
+    <th>Mercancia</th>
+  </tr>
+  <tr>
+    <td>{{data.referencia}}</td>
+    <td>{{data.fechaArribo | date}}</td>
+    <td>{{data.origen}}</td>
+    <td>{{data.destino}}</td>
+    <td>{{data.status}}</td>
+    <td>{{data.cantidadContainers}}</td>
+    <td>{{data.mercancia}}</td>
+  </tr>
+</table>
+<table>
+  <tr *ngFor="let archivo of archivos">
+    <td><img src="./assets/img/{{archivo.name}}" alt="" style="width: 150px; height: 150px;"></td>
+  </tr>
+</table>

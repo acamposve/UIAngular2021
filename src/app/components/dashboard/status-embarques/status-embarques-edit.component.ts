@@ -32,7 +32,6 @@ export class StatusEmbarquesEditComponent implements OnInit {
   ) {
     var id = this.actRoute.snapshot.paramMap.get('id');
 
-    console.log('aqui ' + id);
 
     this.statusApi.getById(Number(id)).subscribe((data) => {
       this.StatusForm = this.fb.group({

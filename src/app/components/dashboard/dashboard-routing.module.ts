@@ -5,6 +5,7 @@ import { EmbarquesUsuariosComponent } from './embarques-usuarios/embarques-usuar
 import { EmbarquesAddComponent } from './embarques/embarques-add.component';
 import { EmbarquesComponent } from './embarques/embarques.component';
 import { InicioComponent } from './inicio/inicio.component';
+import { ReceiptdetailComponent } from './receiptdetail.component';
 import { StatusEmbarquesAddComponent } from './status-embarques/status-embarques-add.component';
 import { StatusEmbarquesEditComponent } from './status-embarques/status-embarques-edit.component';
 import { StatusEmbarquesComponent } from './status-embarques/status-embarques.component';
@@ -26,7 +27,7 @@ const routes: Routes = [
     { path: 'edit-status/:id', component: StatusEmbarquesEditComponent },
     { path: 'receiptAdd', component: EmbarquesAddComponent },
     { path: 'usuariosembarques', component: EmbarquesUsuariosComponent },
-
+    { path: 'receiptdetail/:id', component: ReceiptdetailComponent },
   ] },
 
 ];

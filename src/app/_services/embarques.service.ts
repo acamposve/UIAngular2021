@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { Receipt } from '../_models/receipt';
 import { UsuariosEmbarques } from '../_models/usuariosembarques';
 import { ReceiptsAccounts } from '../_models/receipts_accounts';
+import { FilesReceipt } from '../_models/files-receipt';
 
 const baseUrl = `${environment.apiUrl}/api/Receipts`;
 @Injectable({
@@ -33,6 +34,11 @@ export class EmbarquesService {
     );
   }
 
+  getFilesByReceiptId(id: number) {
+    return this.http.get<FilesReceipt[]>(
+      `${environment.apiUrl}/api/Receipts/FilesByReceipt/${id}`
+    );
+  }
 
   create(params: any) {
     return this.http.post(baseUrl, params);
@@ -40,8 +46,6 @@ export class EmbarquesService {
 
 
   createUsers(params: any) {
-
-
     return this.http.post(`${baseUrl}/addUsers`, params);
   }
 

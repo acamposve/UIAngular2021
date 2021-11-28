@@ -15,6 +15,7 @@ import { StatusEmbarquesAddComponent } from './status-embarques/status-embarques
 import { StatusEmbarquesEditComponent } from './status-embarques/status-embarques-edit.component';
 import { EmbarquesAddComponent } from './embarques/embarques-add.component';
 import { EmbarquesUsuariosComponent } from './embarques-usuarios/embarques-usuarios.component';
+import { ReceiptdetailComponent } from './receiptdetail.component';
 
 
 
@@ -33,7 +34,8 @@ import { EmbarquesUsuariosComponent } from './embarques-usuarios/embarques-usuar
     StatusEmbarquesAddComponent,
     StatusEmbarquesEditComponent,
     EmbarquesAddComponent,
-    EmbarquesUsuariosComponent
+    EmbarquesUsuariosComponent,
+    ReceiptdetailComponent
   ],
   imports: [
     CommonModule,

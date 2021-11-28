@@ -36,15 +36,11 @@
 
             <!-- Symbol Column -->
             <ng-container matColumnDef="status" style="width: 20%">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                Status
-              </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
               <td mat-cell *matCellDef="let element">
                 {{ element.status }}
               </td>
             </ng-container>
-
-
 
             <!-- Position Column -->
             <ng-container matColumnDef="referencia">
@@ -87,15 +83,24 @@
               <th mat-header-cell *matHeaderCellDef mat-sort-header>Destino</th>
               <td mat-cell *matCellDef="let element">{{ element.destino }}</td>
             </ng-container>
-      <!-- Symbol Column -->
-      <ng-container matColumnDef="acciones" style="width: 1 5%">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let element; let i = index;" style="text-align: right;">
-          <button mat-raised-button color="primary" class="push-right"
-            [routerLink]="['/dashboard/receiptdetail/', element.id]">Detalles</button>
-
-        </td>
-      </ng-container>
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="acciones" style="width: 1 5%">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td
+                mat-cell
+                *matCellDef="let element; let i = index"
+                style="text-align: right"
+              >
+                <button
+                  mat-raised-button
+                  color="primary"
+                  class="push-right"
+                  [routerLink]="['/dashboard/receiptdetail/', element.id]"
+                >
+                  Detalles
+                </button>
+              </td>
+            </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
           </table>
@@ -108,9 +113,7 @@
         </div>
       </div>
 
-      <div *ngIf="isAdmin">
-        Texto de bienvenida para admins
-      </div>
+      <div *ngIf="isAdmin"><img src="./assets/img/logo_aplogistics.png" alt=""></div>
     </div>
   </div>
 </div>
