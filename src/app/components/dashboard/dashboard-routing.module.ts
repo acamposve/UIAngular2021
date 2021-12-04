@@ -26,7 +26,7 @@ const routes: Routes = [
     { path: 'statusAdd', component: StatusEmbarquesAddComponent },
     { path: 'edit-status/:id', component: StatusEmbarquesEditComponent },
     { path: 'receiptAdd', component: EmbarquesAddComponent },
-    { path: 'usuariosembarques', component: EmbarquesUsuariosComponent },
+    { path: 'add-user-receipt/:id', component: EmbarquesUsuariosComponent },
     { path: 'receiptdetail/:id', component: ReceiptdetailComponent },
   ] },
 

@@ -74,10 +74,25 @@
       <ng-container matColumnDef="acciones" style="width: 1 5%">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let element; let i = index;" style="text-align: right;">
-          <button mat-raised-button color="primary" class="push-right"
-            [routerLink]="['/dashboard/edit-receipt/', element.id]">Edit</button>
-          <button mat-raised-button color="accent" (click)="deleteReceipt(i, element)">Delete</button>
-        </td>
+
+            <a [routerLink]="['/dashboard/add-user-receipt/', element.id]"
+            #tooltip="matTooltip"
+            matTooltip="Agregar Usuarios al embarque"
+
+            matTooltipHideDelay="1000">
+              <i class="material-icons">group</i>
+
+                        </a>
+
+            <a [routerLink]="['/dashboard/edit-receipt/', element.id]">
+              <i class="material-icons">edit</i>
+
+                        </a>
+
+                        <a (click)="deleteReceipt(i, element)">
+                          <i class="material-icons">delete</i>
+
+                                    </a></td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
