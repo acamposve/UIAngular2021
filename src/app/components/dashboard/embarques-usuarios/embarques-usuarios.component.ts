@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -32,12 +32,13 @@ export class EmbarquesUsuariosComponent implements OnInit {
   @ViewChild('resetEmbarquesForm') myNgForm: any;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   embarquesForm!: FormGroup;
+  embarqueid!: number;
   constructor(
     public fb: FormBuilder,
     private router: Router,
     private ngZone: NgZone,
     private embarquesApi: EmbarquesService,
-
+    private actRoute: ActivatedRoute,
     private userApi: UsuariosService,
     private dateAdapter: DateAdapter<Date>
   ) {
@@ -45,6 +46,8 @@ export class EmbarquesUsuariosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.embarqueid = Number(this.actRoute.snapshot.paramMap.get('id'));
+    console.log('id desde url' + this.embarqueid);
     this.submitBookForm();
     this.userApi
       .getAll()
@@ -59,8 +62,8 @@ export class EmbarquesUsuariosComponent implements OnInit {
   /* Reactive book form */
   submitBookForm() {
     this.embarquesForm = this.fb.group({
-      embarqueid: ['', [Validators.required]],
       userid: ['', [Validators.required]],
+      embarqueid: [''],
     });
   }
   onFileChange(event: any) {
@@ -88,12 +91,13 @@ export class EmbarquesUsuariosComponent implements OnInit {
   /* Submit book */
   submitEmbarquesUsuariosForm() {
     if (this.embarquesForm.valid) {
-
-console.log(this.embarquesForm.value);
-
-      this.embarquesApi.createUsers(this.embarquesForm.value).subscribe(res => {
-        this.ngZone.run(() => this.router.navigateByUrl('/dashboard'))
-      });
+      this.embarquesApi
+        .createUsers(this.embarquesForm.value)
+        .subscribe((res) => {
+          this.ngZone.run(() =>
+            this.router.navigateByUrl('/dashboard/usuarios')
+          );
+        });
     }
   }
 }

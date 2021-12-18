@@ -30,7 +30,8 @@ export class UsuariosEditComponent implements OnInit {
   ) {
     var id = this.actRoute.snapshot.paramMap.get('id');
 
-    console.log('aqui ' + id);
+
+
 
     this.userApi.getById(Number(id)).subscribe((data) => {
       this.userForm = this.fb.group({
@@ -39,7 +40,7 @@ export class UsuariosEditComponent implements OnInit {
         username: [data.username, [Validators.required]],
         password: [data.password, [Validators.required]],
 
-        ConfirmPassword: ['', [Validators.required]],
+        ConfirmPassword: [data.password, [Validators.required]],
         role: [data.role, [Validators.required]],
       });
     });

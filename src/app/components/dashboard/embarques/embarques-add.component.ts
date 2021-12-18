@@ -23,8 +23,7 @@ export class EmbarquesAddComponent implements OnInit {
   myFiles: string[] = [];
   myUsers: Number[] = [];
   statusList: Status[] = [];
-
-
+  loading = false;
 
   @ViewChild('chipList') chipList: any;
   @ViewChild('resetEmbarquesForm') myNgForm: any;
@@ -48,8 +47,6 @@ export class EmbarquesAddComponent implements OnInit {
       .getAll()
       .pipe(first())
       .subscribe((statusList) => (this.statusList = statusList));
-
-
   }
   /* Reactive book form */
   submitBookForm() {
@@ -90,7 +87,7 @@ export class EmbarquesAddComponent implements OnInit {
   /* Submit book */
   submitEmbarquesForm() {
     const formData = new FormData();
-
+    this.loading = true;
     for (var i = 0; i < this.myFiles.length; i++) {
       formData.append('file[]', this.myFiles[i]);
     }

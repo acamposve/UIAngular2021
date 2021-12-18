@@ -1,0 +1,144 @@
+<div class="container">
+  <mat-toolbar>
+    <span>Agregar Embarques</span>
+  </mat-toolbar>
+
+  <div class="body">
+    <div class="formulario" style="width: 75%">
+      <form
+        [formGroup]="embarquesForm"
+        (ngSubmit)="submitEmbarquesForm()"
+        #resetUserForm="ngForm"
+        novalidate
+      >
+        <div class="form-container">
+          <div class="row">
+            <mat-form-field class="example-full-width">
+              <input
+                matInput
+                placeholder="Referencia"
+                formControlName="referencia"
+              />
+              <mat-error *ngIf="handleError('referencia', 'required')">
+                You must provide a<strong>student name</strong>
+              </mat-error> </mat-form-field
+            ><mat-form-field>
+              <input
+                matInput
+                [matDatepicker]="fechaarribo"
+                placeholder="Fecha Arribo"
+                formControlName="fechaarribo"
+                required
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="fechaarribo"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #fechaarribo></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <div class="row"></div>
+
+          <div class="row">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Origen" formControlName="origen" />
+              <mat-error *ngIf="handleError('origen', 'required')">
+                You must provide a<strong>student email</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Destino" formControlName="destino" />
+              <mat-error *ngIf="handleError('destino', 'required')">
+                You must provide a<strong>student email</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="row"></div>
+          <div class="row">
+            <mat-form-field class="example-full-width">
+              <input
+                matInput
+                placeholder="Cantidad Containers"
+                formControlName="cantidadcontainers"
+              />
+              <mat-error *ngIf="handleError('cantidadcontainers', 'required')">
+                You must provide a<strong>student email</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <textarea
+                matInput
+                formControlName="mercancia"
+                placeholder="Mercancia"
+              ></textarea>
+            </mat-form-field>
+          </div>
+          <div class="row"></div>
+          <div class="row">
+            <mat-form-field appearance="fill">
+              <mat-label>Status ({{ receiptactual.status }})</mat-label>
+              <mat-select formControlName="statusid">
+                <mat-option
+                  *ngFor="let status of statusList"
+                  [value]="status.id"
+                  >{{ status.status }}</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <input
+              formControlName="file"
+              id="file"
+              type="file"
+              multiple
+              class="form-control"
+              (change)="onFileChange($event)"
+            />
+          </div>
+        </div>
+        <!-- Submit & Reset -->
+        <mat-card>
+          <div class="full-wrapper button-wrapper">
+            <div class="button-wrapper">
+              <button mat-flat-button color="warn">Submit</button>
+            </div>
+          </div>
+        </mat-card>
+      </form>
+      <br><br>
+      <mat-card class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>Usuarios asignados al embarque</mat-card-title>
+
+        </mat-card-header>
+        <mat-card-content>
+          <table>
+            <tr *ngFor="let cuenta of accountsList">
+              <td style="text-align: left;">
+                {{ cuenta.firstname }}             {{ cuenta.lastname }}
+              </td>
+            </tr>
+          </table>
+        </mat-card-content>
+      </mat-card>
+
+
+      <table>
+        <tr *ngFor="let archivo of archivos">
+          <td *ngIf="archivo.extension.includes('image')">
+            <img [src]="archivo.path" style="width: 75px; height: 75px" />
+          </td>
+          <td *ngIf="archivo.extension.includes('video')">
+            <video width="75px" height="75px" [src]="archivo.path" controls>
+              Your browser does not support HTML5 video.
+            </video>
+          </td>
+          <td><a (click)="deleteReceiptFile(archivo.id)">Eliminar</a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

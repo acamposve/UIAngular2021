@@ -1,11 +1,9 @@
 <mat-toolbar color="primary">
-  <span>Applogistics | Document Manager </span>
+  <span>Aplogistics | Document Manager </span>
   <span class="example-spacer"></span>
   <button mat-button routerLink="/dashboard">Dashboard</button>
   <button mat-button routerLink="/dashboard/usuarios"  *ngIf="isAdmin">Usuarios</button>
   <button mat-button routerLink="/dashboard/embarques"  *ngIf="isAdmin">Embarques</button>
-  <button mat-button routerLink="/dashboard/usuariosembarques"  *ngIf="isAdmin">Asociar Usuarios a Embarques</button>
-  <button mat-button routerLink="/dashboard/status"  *ngIf="isAdmin">Status Embarques</button>
   <span class="example-spacer"></span>
   <button mat-icon-button  (click)="logout()" class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
     <mat-icon>logout</mat-icon>

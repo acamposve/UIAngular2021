@@ -47,7 +47,7 @@ export class ListComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   deleteUser(index: number, e: { id: string; }){
-    if(window.confirm('Are you sure')) {
+    if (window.confirm('Seguro quiere borrar los datos del usuario?')) {
       const data = this.dataSource.data;
       data.splice((this.paginator.pageIndex * this.paginator.pageSize) + index, 1);
       this.dataSource.data = data;

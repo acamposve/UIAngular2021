@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { EmbarquesUsuariosComponent } from './embarques-usuarios/embarques-usuarios.component';
 import { EmbarquesAddComponent } from './embarques/embarques-add.component';
+import { EmbarquesEditComponent } from './embarques/embarques-edit/embarques-edit.component';
 import { EmbarquesComponent } from './embarques/embarques.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { ReceiptdetailComponent } from './receiptdetail.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
     { path: 'usuarios', loadChildren: usersModule },
     { path: 'usuariosAdd', component: UsuariosAddComponent },
     { path: 'edit-user/:id', component: UsuariosEditComponent },
+    { path: 'edit-receipt/:id', component: EmbarquesEditComponent },
     { path: 'embarques', component: EmbarquesComponent },
     { path: 'status', component: StatusEmbarquesComponent },
     { path: 'statusAdd', component: StatusEmbarquesAddComponent },

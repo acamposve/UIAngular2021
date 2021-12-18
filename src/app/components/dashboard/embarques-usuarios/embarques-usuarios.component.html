@@ -5,24 +5,24 @@
 
   <div class="body">
     <div class="formulario">
+      <table>
+        <tr *ngFor="let user of userList">
+          <td>{{ user.firstName }} {{ user.lastName }}</td>
+        </tr>
+      </table>
+
       <form
         [formGroup]="embarquesForm"
         (ngSubmit)="submitEmbarquesUsuariosForm()"
         #resetUserForm="ngForm"
         novalidate
       >
-        <div class="form-container">
-          <mat-form-field appearance="fill">
-            <mat-label>Embarque</mat-label>
-            <mat-select formControlName="embarqueid">
-              <mat-option
-                *ngFor="let embarque of embarquesList"
-                [value]="embarque.id"
-                >{{ embarque.referencia }}</mat-option
-              >
-            </mat-select>
-          </mat-form-field>
-        </div>
+        <input
+          type="hidden"
+          formControlName="embarqueid"
+          [value]="embarqueid"
+          [(ngModel)]="embarqueid"
+        />
         <div class="form-container">
           <mat-form-field appearance="fill">
             <mat-label>Usuarios</mat-label>

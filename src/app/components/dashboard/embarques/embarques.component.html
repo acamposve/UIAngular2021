@@ -18,7 +18,7 @@
     />
   </mat-form-field>
   <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" matSort style="margin-top: 20px;">
+    <table mat-table [dataSource]="dataSource" matSort style="margin-top: 20px">
       <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
 
@@ -40,7 +40,7 @@
           style="width: 20%"
           mat-sort-header
         >
-        referencia
+          referencia
         </th>
         <td mat-cell *matCellDef="let element">{{ element.referencia }}</td>
       </ng-container>
@@ -55,8 +55,25 @@
         >
           Fecha Arribo
         </th>
-        <td mat-cell *matCellDef="let element">{{ element.fechaarribo }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.fechaArribo  | date: 'dd/MM/yyyy' }}</td>
       </ng-container>
+
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="status">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          style="width: 20%"
+          mat-sort-header
+        >
+          Status
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+      </ng-container>
+
+
+
 
       <!-- Weight Column -->
       <ng-container matColumnDef="origen" style="width: 20%">
@@ -73,26 +90,28 @@
       <!-- Symbol Column -->
       <ng-container matColumnDef="acciones" style="width: 1 5%">
         <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let element; let i = index;" style="text-align: right;">
-
-            <a [routerLink]="['/dashboard/add-user-receipt/', element.id]"
+        <td
+          mat-cell
+          *matCellDef="let element; let i = index"
+          style="text-align: right"
+        >
+          <a
+            [routerLink]="['/dashboard/add-user-receipt/', element.id]"
             #tooltip="matTooltip"
             matTooltip="Agregar Usuarios al embarque"
+            matTooltipHideDelay="1000"
+          >
+            <i class="material-icons">group</i>
+          </a>
 
-            matTooltipHideDelay="1000">
-              <i class="material-icons">group</i>
+          <a [routerLink]="['/dashboard/edit-receipt/', element.id]">
+            <i class="material-icons">edit</i>
+          </a>
 
-                        </a>
-
-            <a [routerLink]="['/dashboard/edit-receipt/', element.id]">
-              <i class="material-icons">edit</i>
-
-                        </a>
-
-                        <a (click)="deleteReceipt(i, element)">
-                          <i class="material-icons">delete</i>
-
-                                    </a></td>
+          <a (click)="deleteReceipt(i, element)">
+            <i class="material-icons">delete</i>
+          </a>
+        </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

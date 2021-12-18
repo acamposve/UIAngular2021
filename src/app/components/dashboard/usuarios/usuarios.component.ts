@@ -28,7 +28,7 @@ export class UsuariosComponent implements OnInit {
     'acciones',
   ];
 
-  constructor(private userApi: UsuariosService,     private router: Router) {
+  constructor(private userApi: UsuariosService, private router: Router) {
     this.userApi.getAll().subscribe((data: any) => {
       this.UserData = data;
       this.dataSource = new MatTableDataSource<User>(this.UserData);
@@ -45,14 +45,15 @@ export class UsuariosComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  deleteUser(index: number, e: { id: string; }){
-
-    console.log("id para borrar" + e.id);
-    if(window.confirm('Are you sure')) {
+  deleteUser(index: number, e: { id: string }) {
+    if (window.confirm('Seguro quiere borrar los datos del usuario?')) {
       const data = this.dataSource.data;
-      data.splice((this.paginator.pageIndex * this.paginator.pageSize) + index, 1);
+      data.splice(
+        this.paginator.pageIndex * this.paginator.pageSize + index,
+        1
+      );
       this.dataSource.data = data;
-      this.userApi.delete(e.id).subscribe()
+      this.userApi.delete(e.id).subscribe();
     }
   }
 

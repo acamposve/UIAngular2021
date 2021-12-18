@@ -5,7 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Status } from '../_models/status';
 
-const baseUrl = `${environment.apiUrl}/api/ReceiptStatus`;
+const baseUrl = `${environment.apiUrl}/ReceiptStatus`;
 @Injectable({
   providedIn: 'root',
 })
@@ -14,13 +14,13 @@ export class StatusService {
   dataChange: BehaviorSubject<Status[]> = new BehaviorSubject<Status[]>([]);
 
   getAll() {
-    return this.http.get<Status[]>(`${environment.apiUrl}/api/ReceiptStatus`);
+    return this.http.get<Status[]>(`${environment.apiUrl}/ReceiptStatus`);
   }
 
   getById(id: number) {
     console.log('id' + id);
     return this.http.get<Status>(
-      `${environment.apiUrl}/api/ReceiptStatus/${id}`
+      `${environment.apiUrl}/ReceiptStatus/${id}`
     );
   }
 

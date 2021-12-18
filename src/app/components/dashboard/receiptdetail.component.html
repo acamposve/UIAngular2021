@@ -1,6 +1,3 @@
-<p>receiptdetail works!</p>
-{{archivos | json}}
-
 <table style="width: 100%;">
   <tr>
     <th>Referencia</th>
@@ -23,6 +20,7 @@
 </table>
 <table>
   <tr *ngFor="let archivo of archivos">
-    <td><img src="./assets/img/{{archivo.name}}" alt="" style="width: 150px; height: 150px;"></td>
+    <td><img [src]="archivo.path" alt="Place image title" style="width: 75px; height: 75px;">{{archivo.name}}</td>
+    <td><a [href]="archivo.path" target="blank">Descargar</a></td>
   </tr>
 </table>

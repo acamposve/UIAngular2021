@@ -14,6 +14,7 @@ export class ReceiptdetailComponent implements OnInit {
   data!: Receipt;
   id!: number;
   archivos!: FilesReceipt[];
+  imagenURL!: File;
   constructor(
     private receiptService: EmbarquesService,
     private route: ActivatedRoute,
@@ -32,5 +33,12 @@ export class ReceiptdetailComponent implements OnInit {
       .getFilesByReceiptId(this.id)
       .pipe(first())
       .subscribe((archivos) => (this.archivos = archivos));
+  }
+
+  mostrarImagen(imagen: string) {
+    return this.receiptService
+      .getAttachment(imagen)
+      .pipe(first())
+      .subscribe((archivo) => (this.imagenURL = archivo));
   }
 }

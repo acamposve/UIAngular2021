@@ -26,6 +26,7 @@ export class EmbarquesComponent implements OnInit {
     'id',
     'referencia',
     'fechaarribo',
+    'status',
     'origen',
     'destino',
     'acciones',
