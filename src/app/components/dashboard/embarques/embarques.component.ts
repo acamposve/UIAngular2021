@@ -52,7 +52,7 @@ export class EmbarquesComponent implements OnInit {
   deleteReceipt(index: number, e: { id: string; }){
 
     console.log("id para borrar" + e.id);
-    if(window.confirm('Are you sure')) {
+    if(window.confirm('Va a eliminar el embarque y toda su información relacionada, está seguro?')) {
       const data = this.dataSource.data;
       data.splice((this.paginator.pageIndex * this.paginator.pageSize) + index, 1);
       this.dataSource.data = data;

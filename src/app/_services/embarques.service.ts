@@ -59,6 +59,25 @@ export class EmbarquesService {
   }
 
 
+
+  createUser(embarqueid: string, accountid: number) {
+    return this.http
+      .post<any>(`${environment.apiUrl}/Receipts/addSingleUser`, {
+        embarqueid,
+        accountid,
+      });
+  }
+
+
+  deleteUser(embarqueid: string, accountid: number) {
+    return this.http
+      .post<any>(`${environment.apiUrl}/Receipts/DeleteReceiptAccount`, {
+        embarqueid,
+        accountid,
+      });
+  }
+
+
   getAttachment(imagen: string) {
     return this.http.get<File>(
       `${environment.apiUrl}/Receipts/GetFile/${imagen}`
@@ -70,7 +89,11 @@ export class EmbarquesService {
       `${environment.apiUrl}/Receipts/accounts/${id}`
     );
   }
-
+  getAccountsNotInReceipt(id: number) {
+    return this.http.get<AccountsReceipts[]>(
+      `${environment.apiUrl}/Receipts/accountsnptinreceipt/${id}`
+    );
+  }
 
   update(params: any) {
     console.log("entro a update ");

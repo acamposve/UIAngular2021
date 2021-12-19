@@ -29,12 +29,14 @@ export class EmbarquesEditComponent implements OnInit {
   statusList: Status[] = [];
   archivos!: FilesReceipt[];
   accountsList!: AccountsReceipts[];
-
+  accountsNotList!: AccountsReceipts[];
+  loading = false;
 
   @ViewChild('chipList') chipList: any;
   @ViewChild('resetEmbarquesForm') myNgForm: any;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   embarquesForm!: FormGroup;
+  embarquesCuentasForm!: FormGroup;
   constructor(
     public fb: FormBuilder,
     private router: Router,
@@ -48,6 +50,10 @@ export class EmbarquesEditComponent implements OnInit {
   ) {
     var id = this.actRoute.snapshot.paramMap.get('id');
     this.dateAdapter.setLocale('en-GB'); //dd/MM/yyyy
+
+    this.embarquesForm = this.fb.group({
+      accountid: ['', [Validators.required]],
+    });
 
     this.embarquesApi.getById(Number(id)).subscribe((data) => {
       this.embarquesForm = this.fb.group({
@@ -77,11 +83,15 @@ export class EmbarquesEditComponent implements OnInit {
       .pipe(first())
       .subscribe((archivos) => (this.archivos = archivos));
 
-
-      this.embarquesApi.getAccountsByReceiptId(Number(id))
+    this.embarquesApi
+      .getAccountsByReceiptId(Number(id))
       .pipe(first())
       .subscribe((accountsList) => (this.accountsList = accountsList));
 
+    this.embarquesApi
+      .getAccountsNotInReceipt(Number(id))
+      .pipe(first())
+      .subscribe((accountsNotList) => (this.accountsNotList = accountsNotList));
 
     this.embarquesApi
       .getById(Number(id))
@@ -102,6 +112,7 @@ export class EmbarquesEditComponent implements OnInit {
       file: ['', [Validators.required]],
     });
   }
+
   onFileChange(event: any) {
     for (var i = 0; i < event.target.files.length; i++) {
       this.myFiles.push(event.target.files[i]);
@@ -162,7 +173,7 @@ export class EmbarquesEditComponent implements OnInit {
     let currentUrl = this.router.url;
 
     if (window.confirm('Are you sure you want to update?')) {
-      console.log(formData);
+      this.loading = true;
 
       this.embarquesApi.update(formData).subscribe((res) => {
         this.ngZone.run(() =>
@@ -170,5 +181,64 @@ export class EmbarquesEditComponent implements OnInit {
         );
       });
     }
+  }
+
+  addUserToReceipt(usuarioid: number) {
+    const usuario = usuarioid;
+    const embarque = this.actRoute.snapshot.paramMap.get('id') || '{}';
+
+    let currentUrl = this.router.url;
+    var id = this.actRoute.snapshot.paramMap.get('id');
+
+
+    this.loading = true;
+    this.embarquesApi
+      .createUser(embarque, usuario)
+      .pipe(first())
+      .subscribe((res) => {
+
+        this.embarquesApi
+        .getAccountsByReceiptId(Number(id))
+        .pipe(first())
+        .subscribe((accountsList) => (this.accountsList = accountsList));
+
+      this.embarquesApi
+        .getAccountsNotInReceipt(Number(id))
+        .pipe(first())
+        .subscribe(
+          (accountsNotList) => (this.accountsNotList = accountsNotList)
+        );
+
+        this.ngZone.run(() =>
+          this.router.navigateByUrl(currentUrl)
+        );
+      });
+  }
+
+  deleteUserToReceipt(usuarioid: number) {
+    const usuario = usuarioid;
+    const embarque = this.actRoute.snapshot.paramMap.get('id') || '{}';
+
+    let currentUrl = this.router.url;
+    var id = this.actRoute.snapshot.paramMap.get('id');
+    this.loading = true;
+    this.embarquesApi
+      .deleteUser(embarque, usuario)
+      .pipe(first())
+      .subscribe((res) => {
+        this.embarquesApi
+          .getAccountsByReceiptId(Number(id))
+          .pipe(first())
+          .subscribe((accountsList) => (this.accountsList = accountsList));
+
+        this.embarquesApi
+          .getAccountsNotInReceipt(Number(id))
+          .pipe(first())
+          .subscribe(
+            (accountsNotList) => (this.accountsNotList = accountsNotList)
+          );
+
+        this.ngZone.run(() => this.router.navigateByUrl(currentUrl));
+      });
   }
 }

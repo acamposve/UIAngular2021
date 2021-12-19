@@ -1,10 +1,10 @@
 <div class="container">
   <mat-toolbar>
-    <span>Agregar Embarques</span>
+    <span>Editar Embarques</span>
   </mat-toolbar>
 
   <div class="body">
-    <div class="formulario" style="width: 75%">
+    <div class="formulario">
       <form
         [formGroup]="embarquesForm"
         (ngSubmit)="submitEmbarquesForm()"
@@ -12,7 +12,7 @@
         novalidate
       >
         <div class="form-container">
-          <div class="row">
+          <div class="col-md-3">
             <mat-form-field class="example-full-width">
               <input
                 matInput
@@ -21,8 +21,11 @@
               />
               <mat-error *ngIf="handleError('referencia', 'required')">
                 You must provide a<strong>student name</strong>
-              </mat-error> </mat-form-field
-            ><mat-form-field>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-3">
+            <mat-form-field>
               <input
                 matInput
                 [matDatepicker]="fechaarribo"
@@ -38,15 +41,15 @@
             </mat-form-field>
           </div>
 
-          <div class="row"></div>
-
-          <div class="row">
+          <div class="col-md-3">
             <mat-form-field class="example-full-width">
               <input matInput placeholder="Origen" formControlName="origen" />
               <mat-error *ngIf="handleError('origen', 'required')">
                 You must provide a<strong>student email</strong>
               </mat-error>
             </mat-form-field>
+            </div>
+            <div class="col-md-3">
             <mat-form-field class="example-full-width">
               <input matInput placeholder="Destino" formControlName="destino" />
               <mat-error *ngIf="handleError('destino', 'required')">
@@ -54,8 +57,8 @@
               </mat-error>
             </mat-form-field>
           </div>
-          <div class="row"></div>
-          <div class="row">
+
+          <div class="col-md-3">
             <mat-form-field class="example-full-width">
               <input
                 matInput
@@ -66,6 +69,8 @@
                 You must provide a<strong>student email</strong>
               </mat-error>
             </mat-form-field>
+            </div>
+            <div class="col-md-3">
             <mat-form-field>
               <textarea
                 matInput
@@ -107,38 +112,82 @@
           </div>
         </mat-card>
       </form>
-      <br><br>
-      <mat-card class="example-card">
-        <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title>Usuarios asignados al embarque</mat-card-title>
-
-        </mat-card-header>
-        <mat-card-content>
-          <table>
-            <tr *ngFor="let cuenta of accountsList">
-              <td style="text-align: left;">
-                {{ cuenta.firstname }}             {{ cuenta.lastname }}
-              </td>
-            </tr>
-          </table>
-        </mat-card-content>
-      </mat-card>
-
-
+      <br /><br />
       <table>
-        <tr *ngFor="let archivo of archivos">
-          <td *ngIf="archivo.extension.includes('image')">
-            <img [src]="archivo.path" style="width: 75px; height: 75px" />
+        <tr>
+          <td>
+            <mat-card class="example-card">
+              <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title
+                  >Usuarios no asignados al embarque</mat-card-title
+                >
+              </mat-card-header>
+              <mat-card-content>
+                <table>
+                  <tr *ngFor="let cuenta of accountsNotList">
+                    <td style="text-align: left">
+                      {{ cuenta.firstname }} {{ cuenta.lastname }}
+                    </td>
+                    <td><mat-icon aria-hidden="false" aria-label="Example check circle icon icon" (click)="addUserToReceipt(cuenta.id)">done</mat-icon></td>
+
+                  </tr>
+                </table>
+              </mat-card-content>
+            </mat-card>
           </td>
-          <td *ngIf="archivo.extension.includes('video')">
-            <video width="75px" height="75px" [src]="archivo.path" controls>
-              Your browser does not support HTML5 video.
-            </video>
+          <td>&nbsp;</td>
+          <td>
+            <mat-card class="example-card">
+              <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>Usuarios asignados al embarque</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <table style="width: 100%;">
+                  <tr *ngFor="let cuenta of accountsList">
+                    <td style="text-align: left">
+                      {{ cuenta.firstname }} {{ cuenta.lastname }}
+                    </td>
+                    <td><mat-icon aria-hidden="false" aria-label="Example check circle icon icon" (click)="deleteUserToReceipt(cuenta.id)">delete</mat-icon></td>
+                  </tr>
+                </table>
+              </mat-card-content>
+            </mat-card>
           </td>
-          <td><a (click)="deleteReceiptFile(archivo.id)">Eliminar</a></td>
+          <td>&nbsp;</td>
+          <td>
+
+            <mat-card class="example-card">
+              <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>Documentos asignados al embarque</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <table>
+                  <tr *ngFor="let archivo of archivos">
+                    <td *ngIf="archivo.extension.includes('image')">
+                      <img [src]="archivo.path" style="width: 75px; height: 75px" />
+                    </td>
+                    <td *ngIf="archivo.extension.includes('video')">
+                      <video width="75px" height="75px" [src]="archivo.path" controls>
+                        Your browser does not support HTML5 video.
+                      </video>
+                    </td>
+                    <td *ngIf="archivo.extension.includes('application')">
+                    <img src="assets/img/pdf.png" style="width: 50px; height: 50px;"alt="">
+                    </td>
+                    <td><a (click)="deleteReceiptFile(archivo.id)">Eliminar</a></td>
+                  </tr>
+                </table>
+              </mat-card-content>
+            </mat-card>
+
+          </td>
         </tr>
       </table>
+
+
     </div>
   </div>
 </div>
